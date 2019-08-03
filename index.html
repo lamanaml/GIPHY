@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Giphy API</title>
+</head>
+
+<body>
+
+    <div class="col1"></div>
+    <div class="col2"></div>
+        
+
+   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // Example queryURL for Giphy API
+    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=AmIotNKRAUTAbAaLKUxNGPcfsXJBlFFB";
+    
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+    });
+
+    
+    var buttonChoice = ["dog", "cat" , "horse", "pig", "cow"]
+       
+       buttonChoice.forEach(function (items) {
+        var button = $("<button>")
+        button.append(items);
+        $(".col1").append(button)
+       })
+
+    var textBox = $("input type='textbox'")
+    var addItem = $("<button>")
+    $(".col2").append(textBox, addItem)
+
+//$(function() {
+  //  $('#add').on('click', function( e ) {
+       // e.preventDefault();
+       
+       // .insertBefore( this );
+  //  });
+
+    //document.on("click", function(){
+      //  console.log("hello")
+  </script>
+
+</body>
+
+</html>
