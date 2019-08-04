@@ -30,14 +30,28 @@
     var buttonChoice = ["dog", "cat" , "horse", "pig", "cow"]
        
        buttonChoice.forEach(function (items) {
-        var button = $("<button>")
+        var button = $("<button>");
         button.append(items);
+        //var link = "<a href='https://api.giphy.com/v1/gifs/search?api_key=AmIotNKRAUTAbAaLKUxNGPcfsXJBlFFB&q=" + items + "'>" + button + "</a>"
+        button.click(function(){ window.location = 'https://api.giphy.com/v1/gifs/search?api_key=AmIotNKRAUTAbAaLKUxNGPcfsXJBlFFB&q=' + items });
+
+
+
+       
+       
         $(".col1").append(button)
+        
+       
        })
 
-    var textBox = $("input type='textbox'")
-    var addItem = $("<button>")
-    $(".col2").append(textBox, addItem)
+
+
+
+//adding a new button
+    // var textBox = $("input type='textbox'")
+    // var addItem = $("<button>")
+    // $(".col2").append(textBox, addItem)
+
 
 //$(function() {
   //  $('#add').on('click', function( e ) {
