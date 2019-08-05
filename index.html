@@ -8,60 +8,69 @@
 
 <body>
 
-    <div class="col1"></div>
-    <div class="col2"></div>
-        
+    <div id="row1"></div>
+    <div id="row2">
+      <form id="addPets">
+      <label for="pet-input">Add a new Pet</label>
+      <input type="text" id="pet-input"><br>
+
+      <!-- Button triggers new movie to be added -->
+      <input id="add-pet" type="submit" value="Add a Pet">
+    </form>
+    </div>
+
+    <div id="col2"></div>
+
+
+
+          
 
    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
     // Example queryURL for Giphy API
+    function petDisplay(){
     var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=AmIotNKRAUTAbAaLKUxNGPcfsXJBlFFB";
-    
+    button = ""
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      console.log(response);
+      
+      console.log(response.data[0].embed_url)
     });
-
-    
+    }
     var buttonChoice = ["dog", "cat" , "horse", "pig", "cow"]
-       
-       buttonChoice.forEach(function (items) {
-        var button = $("<button>");
+    var button = ""  
+    var newPet = ""
+    
+    function petGifs() {
+    $("#row1").empty();
+    buttonChoice.forEach(function (items) {
+        button = $("<button>");
         button.append(items);
-        //var link = "<a href='https://api.giphy.com/v1/gifs/search?api_key=AmIotNKRAUTAbAaLKUxNGPcfsXJBlFFB&q=" + items + "'>" + button + "</a>"
-        button.click(function(){ window.location = 'https://api.giphy.com/v1/gifs/search?api_key=AmIotNKRAUTAbAaLKUxNGPcfsXJBlFFB&q=' + items });
-
-
-
-       
-       
-        $(".col1").append(button)
+        console.log(items)
         
-       
+       //button.click();
+
+        //'https://api.giphy.com/v1/gifs/search?api_key=AmIotNKRAUTAbAaLKUxNGPcfsXJBlFFB&q='
+        $("#row1").append(button)
+        
        })
-
-
-
+    }
 
 //adding a new button
-    // var textBox = $("input type='textbox'")
-    // var addItem = $("<button>")
-    // $(".col2").append(textBox, addItem)
-
-
-//$(function() {
-  //  $('#add').on('click', function( e ) {
-       // e.preventDefault();
-       
-       // .insertBefore( this );
-  //  });
-
-    //document.on("click", function(){
-      //  console.log("hello")
+    $("#add-pet").on("click", function(event) {
+      event.preventDefault();
+      newPet = $("#pet-input").val().trim();;
+      buttonChoice.push(newPet);
+      
+      petGifs()
+    })
+  $("#add-pet").on("click", "#col2", petDisplay);
+petGifs()
+petDisplay()
   </script>
 
 </body>
