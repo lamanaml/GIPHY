@@ -1,0 +1,10 @@
+body {
+    background-image: url("../images/safaribg.jpg");
+}
+ img {
+     width:200px;
+     margin:5px;
+ }
+ .jumbotron {
+     bgcolor:black;
+ }

@@ -4,75 +4,82 @@
 <head>
   <meta charset="utf-8">
   <title>Giphy API</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-
-    <div id="row1"></div>
-    <div id="row2">
-      <form id="addPets">
-      <label for="pet-input">Add a new Pet</label>
-      <input type="text" id="pet-input"><br>
-
-      <!-- Button triggers new movie to be added -->
-      <input id="add-pet" type="submit" value="Add a Pet">
-    </form>
+<div class="container">
+  <div class="row ">
+    <div class="col card">
+      <div id="animalDiv">
+      </div>
     </div>
-
-    <div id="col2"></div>
-
-
-
-          
-
-   
+    <div class="col card">
+      <form id="addPets">
+      <label for="pet-input">Add a new Pet</label><br>
+      <input type="text" id="pet-input"><br>
+      <input id="add-pet" type="submit" value="Add a Pet">
+      </form>
+    </div>
+  </div>
+    
+  <div class="row jumbotron" id="animals">
+  </div>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
-    // Example queryURL for Giphy API
-    function petDisplay(){
-    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=AmIotNKRAUTAbAaLKUxNGPcfsXJBlFFB";
-    button = ""
 
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-      
-      console.log(response.data[0].embed_url)
-    });
-    }
-    var buttonChoice = ["dog", "cat" , "horse", "pig", "cow"]
-    var button = ""  
-    var newPet = ""
+ //******Global Variables*************
+   var i=0
+    var buttonChoice = ["dog", "cat" , "horse", "pig", "cow"] 
+ //******* ajax function to display pet info ******
+    function petDisplayInfo(){ 
+       $("#animals").empty();
+      var animalSearch = $(this).attr("data-name");
     
-    function petGifs() {
-    $("#row1").empty();
-    buttonChoice.forEach(function (items) {
-        button = $("<button>");
-        button.append(items);
-        console.log(items)
-        
-       //button.click();
+      var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=AmIotNKRAUTAbAaLKUxNGPcfsXJBlFFB&q=" + animalSearch + "&limit=5"; 
+ 
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+        }).then(function(response) {
+          for (var i = 0; i < buttonChoice.length; i++){ 
+            var stillImageURL = response.data[i].images.original_still.url
 
-        //'https://api.giphy.com/v1/gifs/search?api_key=AmIotNKRAUTAbAaLKUxNGPcfsXJBlFFB&q='
-        $("#row1").append(button)
-        
-       })
+            var image = $("<img>").attr("src", stillImageURL);
+
+            $("#animals").append(image)
+          }
+        })
     }
+//******* Function to Generate buttons ************
+   function generateButtons() {
+    $("#animalDiv").empty()
+      for (var a = 0; a < buttonChoice.length; a++) {
+        var button = $("<button>");
+          var items = buttonChoice[a];
+          button.append(items);
+          button.attr("data-name", items);
+          $("#animalDiv").append(button);
 
-//adding a new button
+          }
+   }
+ 
+
+//****************Add a new Pet *****************
     $("#add-pet").on("click", function(event) {
-      event.preventDefault();
-      newPet = $("#pet-input").val().trim();;
-      buttonChoice.push(newPet);
-      
-      petGifs()
-    })
-  $("#add-pet").on("click", "#col2", petDisplay);
-petGifs()
-petDisplay()
-  </script>
+        event.preventDefault();
+        var newPet = $("#pet-input").val().trim();
+        buttonChoice.push(newPet);  
+        generateButtons()
+        })
 
-</body>
 
+  $(document).on("click", "button", petDisplayInfo);
+  generateButtons() 
+ 
+
+    </script>
+  </body>
 </html>
