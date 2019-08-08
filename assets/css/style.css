@@ -1,10 +1,17 @@
 body {
-    background-image: url("../images/safaribg.jpg");
+    background-image: url("../images/plateBG.jpg");
 }
+ 
+ .jumbotron {
+    opacity:.9;
+ }
+ .card {
+     margin:10px;
+     padding:30px;
+     
+ }
  img {
      width:200px;
      margin:5px;
- }
- .jumbotron {
-     bgcolor:black;
+     opacity:.9;
  }
