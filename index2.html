@@ -10,22 +10,36 @@
 
 <body>
 <div class="container">
+
+  <div class="jumbotron jumbotron-fluid alert alert-danger">
+  <div class="container r" >
+    <h1 class="display-4">What's for Dinner</h1>
+    <p class="lead">Add fruits and veggies to your plate... Don't see what you are want?  Search for more!</p>
+  </div>
+</div>
+
+
+
   <div class="row ">
     <div class="col card">
       <div id="veggieDiv">
       </div>
     </div>
-    <div class="col card">
-      <form id="addVegs">
-      <label for="veg-input">Fill your plate with more Veggies!</label><br>
-      <input type="text" id="veg-input"><br>
-      <input id="add-veg" type="submit" value="Add a Vegetable">
-      </form>
+
+      <div class="col card">
+        <form id="addVegs">
+        <label for="veg-input">Fill your plate with more Veggies!</label><br>
+        <input type="text" id="veg-input"><br>
+          <input id="add-veg" type="submit" value="Add a Vegetable">
+        </form>
+      </div>
+    </div>
+      
+    <div class="row jumbotron bgimage" id="veggies">
     </div>
   </div>
-    
-  <div class="row jumbotron" id="veggies">
-  </div>
+
+
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
@@ -101,7 +115,9 @@
     }
     })
   generateButtons() 
- 
+ <div class="footer">
+ <a href="https://github.com/lamanaml/GIPHY"> Git Hub Repo </a>
+ </div>
 
     </script>
   </body>

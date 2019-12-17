@@ -18,6 +18,7 @@ https://github.com/lamanaml/webscraper
 * JavaScript
 * JQuery
 * API
+* Ajax
 
 
 

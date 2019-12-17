@@ -1,6 +1,10 @@
-body {
-    background-image: url("../images/plateBG.jpg");
+.bgimage {
+    background-image: url("../images/plate2.jpg");
 }
+.container2 {
+    background-color: beige;
+}
+
  
  .jumbotron {
     opacity:.9;
@@ -15,3 +19,15 @@ body {
      margin:5px;
      opacity:.9;
  }
+
+ .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: grey;
+   color: white;
+   text-align: center;
+}
+
+
